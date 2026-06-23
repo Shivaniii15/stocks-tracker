@@ -7,6 +7,7 @@ import pandas as pd #handles data perfectly in tabular data. easy to export to e
 # CONFIG
 # -----------------------------
 
+
 #price is shown in usd because API return prices in native exchange currency of the stock. 
 STOCKS = ["AAPL", "GOOGL", "TSLA", "AMZN", "MSFT", "NKE", "FB"]
 
@@ -64,6 +65,8 @@ for stock in STOCKS:
 
 df = pd.DataFrame(data)
 
+#make the excel file and save it to the current directory.
+#overwrites existing one
 df.to_excel("stock_tracker.xlsx", index=False)
 
 
