@@ -1,4 +1,7 @@
 import requests
+import yfinance as yf
+
+
 # -----------------------------
 # CONFIG (fill later)
 # -----------------------------
@@ -17,13 +20,8 @@ API_URL = "https://api.example.com/stock"  # replace later
 # FETCH PRICE (placeholder)
 # -----------------------------
 def get_stock_price(symbol):
-    """
-    Replace this with real API logic later.
-    """
-    # TODO: connect to real API
-    # response = requests.get(f"{API_URL}?symbol={symbol}")
-    # data = response.json()
-    # return data["price"]
+    
+    stock = yf.Ticker(symbol)
 
     return 0  # placeholder
 
