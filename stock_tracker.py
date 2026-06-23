@@ -5,12 +5,16 @@ import yfinance as yf
 # -----------------------------
 # CONFIG
 # -----------------------------
-STOCKS = ["AAPL", "GOOGL", "TSLA"]
+STOCKS = ["AAPL", "GOOGL", "TSLA", "AMZN", "MSFT", "NKE", "FB"]
 
 BUY_PRICES = {
     "AAPL": 100.0,
     "GOOGL": 3000.0,
-    "TSLA": 700.0
+    "TSLA": 700.0,
+    "AMZN": 300.0,
+    "MSFT": 250.0,
+    "NKE": 150.0,
+    "FB": 350.0
 }
 
 # -----------------------------
