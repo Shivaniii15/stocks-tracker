@@ -1,4 +1,3 @@
-import requests
 import yfinance as yf
 import pandas as pd #handles data perfectly in tabular data. easy to export to excel.
 
@@ -28,8 +27,20 @@ def get_stock_price(symbol):
 
     """Fetch the current stock price using yfinance"""
     #connection to yahoo finance API.
-    stock = yf.Ticker(symbol)
-    
+    try:
+        stock = yf.Ticker(symbol)
+
+        history = stock.history(period="1d")
+
+        #if data is not found, return 0 and print a message.
+        if history.empty:
+            print(f"No data found for {symbol}.")
+            return 0
+
+    except Exception as e:
+        print(f"Error fetching data for {symbol}: {e}")
+        return 0
+
     """Get current price from the last trading day"""
     #history(period="1d") gets today's data, and "Close" gives the closing price. iloc[-1] gets the latest price.
     current_price = stock.history(period="1d")["Close"].iloc[-1];
@@ -54,6 +65,11 @@ data = []
 
 for stock in STOCKS:
     current_price = get_stock_price(stock)
+
+    if current_price == 0:
+        print(f"Skipping {stock} due to missing data.")
+        continue
+
     pnl = calculate_profit_loss(stock, current_price)
 
     data.append({
